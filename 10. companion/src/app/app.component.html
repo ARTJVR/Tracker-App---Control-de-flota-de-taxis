@@ -1,0 +1,51 @@
+
+<nav class="navbar navbar-inverse bg-inverse">
+  <a class="navbar-brand" href="#">Taxistas</a>
+</nav>
+
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-8">
+      <h1>Siguiendo a: <strong class="text-primary">{{ taxistaSeleccionado.nombre }}</strong></h1>
+
+      <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+        <sebm-google-map-marker
+              *ngFor="let taxista of taxistas"
+              [latitude]="taxista.lat"
+              [longitude]="taxista.lng"
+              [label]="taxista.nombre">
+        </sebm-google-map-marker>
+      </sebm-google-map>
+
+    </div>
+
+    <div class="col-md-4">
+      <h1>Taxistas</h1>
+      <p>
+        Seleccione para seguir
+      </p>
+
+      <ul class="list-group">
+        <li class="list-group-item"
+            (click)="seguir_taxista( taxista )"
+            *ngFor="let taxista of taxistas">
+            {{ taxista.nombre }}
+        </li>
+      </ul>
+
+      <br>
+      <button type="button" class="btn btn-primary btn-block"
+              (click)="dejar_seguir()">
+        Dejar de seguir
+      </button>
+
+    </div>
+
+
+  </div>
+
+
+</div>
